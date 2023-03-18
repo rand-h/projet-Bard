@@ -8,6 +8,15 @@ TextStyle standardTextStyle(){
   );
 }
 
+
+TextStyle musicPlayerTextStyle(){
+  return const TextStyle(
+    fontSize: 20,
+    color: Color(0xFF545455),
+    fontFamily: "Calibri",
+  );
+}
+
 TextStyle choiceTextStyle(){
   return const TextStyle(
     fontSize: 20,

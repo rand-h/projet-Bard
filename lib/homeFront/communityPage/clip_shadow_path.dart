@@ -6,7 +6,7 @@ class ClipShadowPath extends StatelessWidget {
   final CustomClipper<Path> clipper;
   final Widget child;
 
-  ClipShadowPath({
+  const ClipShadowPath({super.key,
     required this.shadow,
     required this.clipper,
     required this.child,
@@ -16,10 +16,10 @@ class ClipShadowPath extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: _ClipShadowShadowPainter(
-        clipper: this.clipper,
-        shadow: this.shadow,
+        clipper: clipper,
+        shadow: shadow,
       ),
-      child: ClipPath(child: child, clipper: this.clipper),
+      child: ClipPath(clipper: clipper, child: child),
     );
   }
 }

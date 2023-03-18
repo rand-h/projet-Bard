@@ -34,7 +34,7 @@ class _AccountPageState extends State<AccountPage> {
                       //icone de haut
                       Container(
                         height: 70,
-                        padding: EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(top: 30),
                         width: MediaQuery.of(context).size.width,
                         color: Colors.transparent,
                         child: Row(
@@ -49,7 +49,7 @@ class _AccountPageState extends State<AccountPage> {
 
                       //photo de profil
                       Padding(
-                        padding: EdgeInsets.only(top:200),
+                        padding: const EdgeInsets.only(top:200),
                         child: Center(
                           child: Container(
                             height: 100,

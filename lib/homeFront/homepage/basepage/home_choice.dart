@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:code/Style/text_style.dart';
-
+import 'package:code/music_lecteur/music_lecteur.dart';
 
 
 Widget choiceWidget(BuildContext context, void Function()? tapFunction1,void Function()? tapFunction2,void Function()? tapFunction3, int pageIndex){
@@ -73,7 +73,14 @@ Widget choiceWidget(BuildContext context, void Function()? tapFunction1,void Fun
 
          //discover
             GestureDetector(
-              onTap: tapFunction3,
+              onTap:(){
+                Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => const MusicFront()
+                )
+                );
+              }
+              /*tapFunction3*/,
               child: Container(
                 width: (pageIndex == 2)?(MediaQuery.of(context).size.width/3.5)+10:MediaQuery.of(context).size.width/3.5,
                 height:(pageIndex == 2)?(MediaQuery.of(context).size.height/3.8)+10:MediaQuery.of(context).size.height/3.8,
