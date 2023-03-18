@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "66360189510",
+    "project_id": "bard-462e5",
+    "storage_bucket": "bard-462e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66360189510:android:77e4fcd8374187494aa047",
+        "android_client_info": {
+          "package_name": "com.project.bard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66360189510-tjj66e35tanvig5di86ue3cb7796upvf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR-ptKqJP0CpDgBdgMcRD44WGqXyp0BlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66360189510-tjj66e35tanvig5di86ue3cb7796upvf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66360189510:android:780d79c6f9668baa4aa047",
+        "android_client_info": {
+          "package_name": "com.projet.bard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66360189510-tjj66e35tanvig5di86ue3cb7796upvf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR-ptKqJP0CpDgBdgMcRD44WGqXyp0BlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66360189510-tjj66e35tanvig5di86ue3cb7796upvf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
