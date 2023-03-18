@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:code/Style/text_style.dart';
 
 class MusicFront extends StatefulWidget {
   const MusicFront({Key? key}) : super(key: key);

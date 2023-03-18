@@ -56,16 +56,21 @@ class _HomeBasePageState extends State<HomeBasePage> {
     );
   }
 
+
   //widget na choix
   Widget choix(){
     if(pageIndex == 0){
-      return const DiscoveryPage();
+      return const RecentPage();
     }else if(pageIndex == 1){
+
       return const FavoritePage();
     }else{
-      return const RecentPage();
+
+      return const DiscoveryPage();
     }
   }
+
+
 
   //widget principal
   @override
@@ -73,7 +78,7 @@ class _HomeBasePageState extends State<HomeBasePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Padding(
-        padding: const EdgeInsets.only(top: 0),
+        padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             Container(
@@ -84,6 +89,20 @@ class _HomeBasePageState extends State<HomeBasePage> {
               child: choiceWidget(context,tapFunction1,tapFunction2, tapFunction3, pageIndex),
             ),
             const SizedBox(height: 20,),
+
+            (pageIndex == 0 || pageIndex == 1)?
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Featured Music", style: musicListTextStyle(),),
+                    Text("See All..", style: musicAlbumTextStyle(),),
+                  ],
+                ),
+              ),
+            ): const SizedBox(),
             choix()
           ],
 

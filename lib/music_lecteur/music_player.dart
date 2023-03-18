@@ -13,8 +13,8 @@ class AudioFile extends StatefulWidget {
 
 class _AudioFileState extends State<AudioFile> {
 
-  Duration _duration = Duration();
-  Duration _position = Duration();
+  Duration _duration = const Duration();
+  Duration _position = const Duration();
 
   final String path = 'https://archive.org/download/lp_schumann-fantasy-in-c-major-op-17-chopin-f_jakob-gimpel/disc1/02.02.%20Chopin%20Fantasy%20In%20F%20Minor%2C%20Op.%2049_sample.mp3';
   bool isPlaying = false;
@@ -23,7 +23,7 @@ class _AudioFileState extends State<AudioFile> {
   bool isLoop = false;
   Color? colorz = Colors.black;
 
-  List<IconData> _icons = [
+  final List<IconData> _icons = [
     Icons.play_circle_filled_rounded,
     Icons.pause_circle_filled_rounded
   ];
@@ -43,7 +43,7 @@ class _AudioFileState extends State<AudioFile> {
     widget.advancedPlayer.setSourceUrl(path);
     widget.advancedPlayer.onPlayerComplete.listen((event) {
       setState(() {
-        _position = Duration(seconds: 0);
+        _position = const Duration(seconds: 0);
         if(isRepeat == true){
           isPlaying =true;
         }else{
@@ -131,18 +131,16 @@ class _AudioFileState extends State<AudioFile> {
 
 
   Widget loadAsset(){
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          btnRepeat(),
-          btnSlow(),
-          btnStart(),
-          btnFast(),
-          btnLoop()
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        btnRepeat(),
+        btnSlow(),
+        btnStart(),
+        btnFast(),
+        btnLoop()
+      ],
     );
   }
 
@@ -169,27 +167,25 @@ class _AudioFileState extends State<AudioFile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(_position.toString().split(".")[0], style: const TextStyle(fontSize:16),),
+    return Column(
+      children: [
+        Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(_position.toString().split(".")[0], style: const TextStyle(fontSize:16),),
 
-                Text(_duration.toString().split(".")[0], style: const TextStyle(fontSize: 16),)
-              ],
-            ),
+              Text(_duration.toString().split(".")[0], style: const TextStyle(fontSize: 16),)
+            ],
           ),
+        ),
 
-          slider(),
-          loadAsset(),
+        slider(),
+        loadAsset(),
 
 
-        ],
-      ),
+      ],
     );
   }
 }

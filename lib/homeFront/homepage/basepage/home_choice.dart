@@ -33,7 +33,7 @@ Widget choiceWidget(BuildContext context, void Function()? tapFunction1,void Fun
                     Text("Recent", style: choiceTextStyle(),),
                     SizedBox(
                       width: (MediaQuery.of(context).size.width/3.2)/1.7,
-                      height:(MediaQuery.of(context).size.height/3.5)/2.5,
+                      height:(MediaQuery.of(context).size.height/3.5)/3,
                       child: const Image(
                         image: AssetImage('Recent.png'),
                         fit: BoxFit.fill,
@@ -60,7 +60,7 @@ Widget choiceWidget(BuildContext context, void Function()? tapFunction1,void Fun
                     Text("Favorites", style: choiceTextStyle(),),
                     SizedBox(
                       width: (MediaQuery.of(context).size.width/3.2)/1.7,
-                      height:(MediaQuery.of(context).size.height/3.5)/2.5,
+                      height:(MediaQuery.of(context).size.height/3.5)/3,
                       child: const Image(
                         image: AssetImage('headphones.png'),
                         fit: BoxFit.fill,
@@ -73,14 +73,7 @@ Widget choiceWidget(BuildContext context, void Function()? tapFunction1,void Fun
 
          //discover
             GestureDetector(
-              onTap:(){
-                Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => const MusicFront()
-                )
-                );
-              }
-              /*tapFunction3*/,
+              onTap: tapFunction3,
               child: Container(
                 width: (pageIndex == 2)?(MediaQuery.of(context).size.width/3.5)+10:MediaQuery.of(context).size.width/3.5,
                 height:(pageIndex == 2)?(MediaQuery.of(context).size.height/3.8)+10:MediaQuery.of(context).size.height/3.8,
@@ -94,7 +87,7 @@ Widget choiceWidget(BuildContext context, void Function()? tapFunction1,void Fun
                     Text("Discover", style: choiceTextStyle(),),
                     SizedBox(
                       width: (MediaQuery.of(context).size.width/3.2)/1.7,
-                      height:(MediaQuery.of(context).size.height/3.5)/2.5,
+                      height:(MediaQuery.of(context).size.height/3.5)/3,
                       child: const Image(
                         image: AssetImage('music-notes.png'),
                         fit: BoxFit.fill,

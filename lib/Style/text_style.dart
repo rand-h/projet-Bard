@@ -17,6 +17,22 @@ TextStyle musicPlayerTextStyle(){
   );
 }
 
+TextStyle musicListTextStyle(){
+  return const TextStyle(
+    fontSize: 15,
+    color: Colors.black87,
+    fontFamily: 'Calibri'
+  );
+}
+
+TextStyle musicAlbumTextStyle(){
+  return const TextStyle(
+    fontSize: 13,
+      color: Color(0x55555555),
+      fontFamily: 'Calibri'
+  );
+}
+
 TextStyle choiceTextStyle(){
   return const TextStyle(
     fontSize: 20,
