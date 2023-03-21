@@ -62,10 +62,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                   decoration: BoxDecoration(
                     color: Color(0x00eeeeee),
                   ),
-                  child: Image.asset(
-                    'assets/images/Bard-logo.png',
-                    height: 100,
-                    fit: BoxFit.contain,
+                  child: InkWell(
+                    onTap: () async {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => BasePage()));
+                    },
+                    child: Image.asset(
+                      'assets/images/Bard-logo.png',
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
@@ -93,7 +99,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.375,
-                          height: MediaQuery.of(context).size.height * 0.10,
+                          height: MediaQuery.of(context).size.height * 0.07,
                           decoration: BoxDecoration(
                             color: Color(0xFF00AAEF),
                             borderRadius: BorderRadius.only(
@@ -139,7 +145,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.375,
-                          height: MediaQuery.of(context).size.height * 0.10,
+                          height: MediaQuery.of(context).size.height * 0.07,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -178,13 +184,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, -0.1),
+                alignment: AlignmentDirectional(0, 0.04),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.08,
+                  height: MediaQuery.of(context).size.height * 0.2,
                   child: Column(mainAxisSize: MainAxisSize.min, children: [
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.036,
+                      height: MediaQuery.of(context).size.height * 0.064,
                       decoration: BoxDecoration(
                         color: Color(0xFFEEEEEE),
                         borderRadius: BorderRadius.only(
@@ -259,7 +265,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.036,
+                      height: MediaQuery.of(context).size.height * 0.064,
                       decoration: BoxDecoration(
                         color: Color(0xFFEEEEEE),
                         borderRadius: BorderRadius.only(
@@ -351,158 +357,168 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, 0.3),
+                alignment: AlignmentDirectional(0, 0.65),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    Container(
-                      height: 50,
-                      decoration: BoxDecoration(),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              try {
-                                final credential = await FirebaseAuth.instance
-                                    .signInWithEmailAndPassword(
-                                        email: emailController!.text,
-                                        password: passwordController!.text);
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 50,
+                          decoration: BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  try {
+                                    final credential = await FirebaseAuth
+                                        .instance
+                                        .signInWithEmailAndPassword(
+                                            email: emailController!.text,
+                                            password: passwordController!.text);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => BasePage()));
+                                  } on FirebaseAuthException catch (e) {
+                                    if (e.code == 'user-not-found') {
+                                      print('No user found for that email.');
+                                      emailFieldMessage =
+                                          'No user found for that email.';
+                                    } else if (e.code == 'wrong-password') {
+                                      print(
+                                          'Wrong password provided for that user.');
+                                      passwordFieldMessage = 'Wrong password';
+                                    }
+                                  }
+                                },
+                                text: 'GO!',
+                                options: FFButtonOptions(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.16,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.064,
+                                  color: Color(0xFF00AAEF),
+                                  textStyle: GoogleFonts.getFont(
+                                    'Poppins',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                  elevation: 10,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 12,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                child: Image.asset(
+                                  'assets/images/right-arrow.png',
+                                  width: 50,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.042,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 20),
+                          child: Container(
+                            height: 20,
+                            decoration: BoxDecoration(
+                              color: Color(0x00eeeeee),
+                            ),
+                            child: InkWell(
+                              onTap: () async => {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => BasePage()));
-                              } on FirebaseAuthException catch (e) {
-                                if (e.code == 'user-not-found') {
-                                  print('No user found for that email.');
-                                  emailFieldMessage =
-                                      'No user found for that email.';
-                                } else if (e.code == 'wrong-password') {
-                                  print(
-                                      'Wrong password provided for that user.');
-                                  passwordFieldMessage = 'Wrong password';
-                                }
-                              }
-                            },
-                            text: 'GO!',
-                            options: FFButtonOptions(
-                              width: MediaQuery.of(context).size.width * 0.16,
-                              height:
-                                  MediaQuery.of(context).size.height * 0.064,
-                              color: Color(0xFF00AAEF),
-                              textStyle: GoogleFonts.getFont(
-                                'Poppins',
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
-                              elevation: 10,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 12,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                            child: Image.asset(
-                              'assets/images/right-arrow.png',
-                              width: MediaQuery.of(context).size.width * 0.128,
-                              height:
-                                  MediaQuery.of(context).size.height * 0.042,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
-                      child: Container(
-                        height: 20,
-                        decoration: BoxDecoration(
-                          color: Color(0x00eeeeee),
-                        ),
-                        child: InkWell(
-                          onTap: () async => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ForgotPasswordWidget()))
-                          },
-                          child: Text(
-                            'Forgot password!',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.getFont(
-                              'Poppins',
-                              color: Color(0xFF101213),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFEEEEEE),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: InkWell(
-                        onTap: () async {
-                          setState(() {
-                            _isSigningIn = true;
-                          });
-
-                          User? user = await Authentication.signInWithGoogle(
-                              context: context);
-
-                          setState(() {
-                            _isSigningIn = false;
-                          });
-
-                          if (user != null) {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => BasePage(
-                                    //user: user,
-                                    ),
-                              ),
-                            );
-                          }
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                              child: Image.asset(
-                                'assets/images/google.png',
-                                width: MediaQuery.of(context).size.width * 0.06,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.06,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 15, 0),
+                                    builder: (context) =>
+                                        ForgotPasswordWidget()))
+                              },
                               child: Text(
-                                'Login with Google',
+                                'Forgot password!',
+                                textAlign: TextAlign.center,
                                 style: GoogleFonts.getFont(
                                   'Poppins',
                                   color: Color(0xFF101213),
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ]),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFEEEEEE),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: InkWell(
+                            onTap: () async {
+                              setState(() {
+                                _isSigningIn = true;
+                              });
+
+                              User? user =
+                                  await Authentication.signInWithGoogle(
+                                      context: context);
+
+                              setState(() {
+                                _isSigningIn = false;
+                              });
+
+                              if (user != null) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => BasePage(
+                                        //user: user,
+                                        ),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10, 0, 0, 0),
+                                  child: Image.asset(
+                                    'assets/images/google.png',
+                                    width: MediaQuery.of(context).size.width *
+                                        0.09,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.09,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 15, 0),
+                                  child: Text(
+                                    'Login with Google',
+                                    style: GoogleFonts.getFont(
+                                      'Poppins',
+                                      color: Color(0xFF101213),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ]),
                 ),
               ),
             ],

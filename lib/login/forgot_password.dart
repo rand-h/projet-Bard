@@ -1,3 +1,4 @@
+import 'package:code/homeFront/themeBase/base_page.dart';
 import 'package:code/login/login.dart';
 import 'package:code/login/register.dart';
 import 'flutter_flow/flutter_flow_widgets.dart';
@@ -40,11 +41,16 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   decoration: BoxDecoration(
                     color: Color(0x00eeeeee),
                   ),
-                  child: Image.asset(
-                    'assets/images/Bard-logo.png',
-                    width: 200,
-                    height: 100,
-                    fit: BoxFit.contain,
+                  child: InkWell(
+                    onTap: () async {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => BasePage()));
+                    },
+                    child: Image.asset(
+                      'assets/images/Bard-logo.png',
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
@@ -52,7 +58,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                 alignment: AlignmentDirectional(0, -0.35),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.062,
+                  height: MediaQuery.of(context).size.height * 0.1,
                   decoration: BoxDecoration(
                     color: Color(0xFFEEEEEE),
                   ),
@@ -71,7 +77,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                           ),
                         ),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.375,
+                          height: MediaQuery.of(context).size.height * 0.07,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -117,7 +124,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                           ),
                         ),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.375,
+                          height: MediaQuery.of(context).size.height * 0.07,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -156,19 +164,20 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 15, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
                 child: Align(
-                  alignment: AlignmentDirectional(0, -0.15),
+                  alignment: AlignmentDirectional(0, 0.15),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    height: MediaQuery.of(context).size.height * 0.08,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           height: MediaQuery.of(context).size.height * 0.062,
                           decoration: BoxDecoration(
-                            color: Color(0xFFEEEEEE),
+                            color: Color(0x00eeeeee),
                           ),
                           child: Text(
                             'Reset your password by sending an email to :',
@@ -255,47 +264,52 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                             ],
                           ),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          height: MediaQuery.of(context).size.height * 0.062,
-                          decoration: BoxDecoration(),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              FFButtonWidget(
-                                onPressed: () async {},
-                                text: 'GO!',
-                                options: FFButtonOptions(
-                                  width: 50,
-                                  height: 45,
-                                  color: Color(0xFF00AAEF),
-                                  textStyle: GoogleFonts.getFont(
-                                    'Poppins',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16,
+                        SizedBox(height: 1),
+                        Center(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            height: MediaQuery.of(context).size.height * 0.062,
+                            decoration: BoxDecoration(),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FFButtonWidget(
+                                  onPressed: () async {},
+                                  text: 'GO!',
+                                  options: FFButtonOptions(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.16,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.064,
+                                    color: Color(0xFF00AAEF),
+                                    textStyle: GoogleFonts.getFont(
+                                      'Poppins',
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                    elevation: 10,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 12,
                                   ),
-                                  elevation: 10,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10, 0, 0, 0),
+                                  child: Image.asset(
+                                    'assets/images/right-arrow.png',
+                                    width: 50,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.042,
+                                    fit: BoxFit.cover,
                                   ),
-                                  borderRadius: 12,
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                child: Image.asset(
-                                  'assets/images/right-arrow.png',
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.128,
-                                  height: MediaQuery.of(context).size.height *
-                                      0.042,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],

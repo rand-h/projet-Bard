@@ -67,11 +67,16 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   decoration: BoxDecoration(
                     color: Color(0x00eeeeee),
                   ),
-                  child: Image.asset(
-                    'assets/images/Bard-logo.png',
-                    width: 200,
-                    height: 100,
-                    fit: BoxFit.contain,
+                  child: InkWell(
+                    onTap: () async {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => BasePage()));
+                    },
+                    child: Image.asset(
+                      'assets/images/Bard-logo.png',
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
@@ -79,7 +84,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 alignment: AlignmentDirectional(0, -0.35),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.75,
-                  height: MediaQuery.of(context).size.height * 0.10,
+                  height: MediaQuery.of(context).size.height * 0.08,
                   decoration: BoxDecoration(
                     color: Color(0xFFEEEEEE),
                   ),
@@ -99,7 +104,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         ),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.375,
-                          height: MediaQuery.of(context).size.height * 0.10,
+                          height: MediaQuery.of(context).size.height * 0.07,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -146,7 +151,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         ),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.375,
-                          height: MediaQuery.of(context).size.height * 0.10,
+                          height: MediaQuery.of(context).size.height * 0.07,
                           decoration: BoxDecoration(
                             color: Color(0xFF00AAEF),
                             borderRadius: BorderRadius.only(
@@ -184,10 +189,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, -0.1),
+                alignment: AlignmentDirectional(0, 0.2),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -522,7 +527,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                 child: Align(
-                  alignment: AlignmentDirectional(0, 0.45),
+                  alignment: AlignmentDirectional(0, 0.5),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.057,
@@ -552,11 +557,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               Align(
                 alignment: AlignmentDirectional(0, 0.65),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.32,
+                  width: MediaQuery.of(context).size.width * 0.5,
                   height: MediaQuery.of(context).size.height * 0.071,
                   decoration: BoxDecoration(),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (switchListTileValue ?? true)
                         FFButtonWidget(
@@ -615,7 +621,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                         child: Image.asset(
                           'assets/images/right-arrow.png',
-                          width: MediaQuery.of(context).size.width * 0.128,
+                          width: 50,
                           height: MediaQuery.of(context).size.height * 0.042,
                           fit: BoxFit.cover,
                         ),

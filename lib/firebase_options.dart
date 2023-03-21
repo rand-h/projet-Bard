@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'try to add using FlutLab Firebase Configuration',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -51,6 +48,16 @@ class DefaultFirebaseOptions {
         );
     }
   }
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDlnoxCGW_o-UkN1xK3Q87vTHqQ0qw1Xfg',
+    authDomain: 'bard-462e5.firebaseapp.com',
+    projectId: 'bard-462e5',
+    storageBucket: 'bard-462e5.appspot.com',
+    messagingSenderId: '66360189510',
+    appId: '1:66360189510:web:3b889124f6aac7d54aa047',
+    measurementId: 'G-M7P9SD7ZR0'
+  );
+
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAR-ptKqJP0CpDgBdgMcRD44WGqXyp0BlA',

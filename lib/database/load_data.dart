@@ -12,30 +12,82 @@ class Access_Music_database_collection {
   List<String> url = [];
   List<int> rating = []; // "rating
   List<String> artist = []; // "Artist name"
-  String cover_image = "path/to/the/cover-image";
+  String cover_image = "path";
   String cover_URL = "url";
 
+  final _musique = FirebaseFirestore.instance;
+
   //////////////// constructor ////////////////////////////////////////
-  Access_Music_database_collection(String collection_name) {
+  Access_Music_database_collection(this.album) {
     //reçoit en entrer un nom d'album
-    CollectionReference musique =
-        FirebaseFirestore.instance.collection(collection_name);
+    CollectionReference musique = _musique.collection(album);
 
-    this.album = collection_name; //nom de la collection dans cloud firestore
-
+    //print('work');
     //////////////// information des musiques /////////////////////////
     try {
       // Get data from docs and convert map to List
+      //
+      // // // Put all title in a list // // // /////////////////////////////////////////
       musique.get().then((QuerySnapshot querySnapshot) {
         final docu = querySnapshot.docs.map((doc) => doc.data()).toList();
         this.titles = docu
-            .map(
-                (element) => (element as dynamic)['title'].toString() ?? "vide")
+            .map((element) => (element as dynamic)['titre'].toString())
             .toList();
+
+        //print((docu[0] as dynamic)['titre']);
+        print(titles);
+
         //docu.forEach((element) => this.titles.add(element['title'].toString()));
       });
+      ///////////////////////////////////////////////////////////////////////////////////
+      // // // Put all path in a list // // // //
+      musique.get().then((QuerySnapshot querySnapshot) {
+        final docu = querySnapshot.docs.map((doc) => doc.data()).toList();
+        this.path = docu
+            .map((element) => (element as dynamic)['path'].toString())
+            .toList();
 
-      this
+        //print((docu[0] as dynamic)['path']);
+        //print(path);
+      });
+      ////////////////////////////////////////////////////////////////////////////////////
+      // // // Put all url in a list // // // ////////////////////////////////////////////
+      musique.get().then((QuerySnapshot querySnapshot) {
+        final docu = querySnapshot.docs.map((doc) => doc.data()).toList();
+        this.url = docu
+            .map((element) => (element as dynamic)['url'].toString())
+            .toList();
+
+        //print((docu[0] as dynamic)['url']);
+        //print(url);
+      });
+
+      ////////////////////////////////////////////////////////////////////////////////////
+      // // // Put all rating in a list // // // ////////////////////////////////////////////
+      musique.get().then((QuerySnapshot querySnapshot) {
+        final docu = querySnapshot.docs.map((doc) => doc.data()).toList();
+        this.rating = docu
+            .map((element) => ((element as dynamic)['rating']) ?? 0)
+            .toList()
+            .cast<int>();
+
+        //print(((docu[4] as dynamic)['rating'] ?? 0));
+        print(rating);
+      });
+
+      ////////////////////////////////////////////////////////////////////////////////////
+      // // // Put all url in a list // // // ////////////////////////////////////////////
+      musique.get().then((QuerySnapshot querySnapshot) {
+        final docu = querySnapshot.docs.map((doc) => doc.data()).toList();
+        this.artist = docu
+            .map((element) => (element as dynamic)['artist'].toString())
+            .toList();
+
+        //print((docu[0] as dynamic)['artist']);
+        //print(artist);
+      });
+      ////////////////////////////////////////////////////////////////////////////////////
+      /*this
           .titles
           .forEach((titre) => musique.get().then((QuerySnapshot querySnapshot) {
                 // pour chaque titre, recuperer les informations
@@ -46,8 +98,11 @@ class Access_Music_database_collection {
                   this.artist.add(doc["artist"]);
                 });
               }));
+      */
+
+      // print(path);
     } catch (e) {
-      print("Error");
+      //print("Error");
     }
     ////////////////// path du cover ////////////////////
     ///
@@ -59,6 +114,8 @@ class Access_Music_database_collection {
           this.cover_image =
               (data as dynamic)['path']; // recuperer le path du cover
         }
+
+        //print(cover_image);
       });
     } catch (e) {
       this.cover_image = "assets/images/default_cover.jpg"; // cover par dafaut
@@ -71,7 +128,10 @@ class Access_Music_database_collection {
           final data = documentSnapshot.data();
           this.cover_URL =
               (data as dynamic)['url'].toString(); // recuperer le path du cover
+          //this.cover_URL = "nobody";
         }
+
+        //print(cover_URL);
       });
     } catch (e) {
       //default url cover
@@ -81,28 +141,28 @@ class Access_Music_database_collection {
   }
   //////////////////// getter ////////////////////////////////////
   //getter
-  get album_name => album; // nom de l'album
+  get get_album_name => album; // nom de l'album
 
-  get cover_path => cover_path; // path du cover
+  get get_cover_path => cover_image; // path du cover
 
-  get cover_url => cover_URL; // url du cover
+  get get_cover_url => cover_URL; // url du cover
 
   // getter dans des listes
-  get all_music_in_album => titles; // liste de titres de musique
+  get get_title_list => titles; // liste de titres de musique
 
-  get path_list =>
+  get get_path_list =>
       path; // liste de path des musiques suivant l'index des titres
 
-  get url_list => url; //liste url des musiques
+  get get_url_list => url; //liste url des musiques
 
-  get rating_list =>
+  get get_rating_list =>
       rating; // liste de path des musiques suivant l'index des titres
 
-  get artist_list =>
+  get get_artist_list =>
       artist; // liste de path des musiques suivant l'index des titres
 
   // getter methode si titre de musique connue
-  String musique_path(String titre_connue) {
+  String get_musique_path(String titre_connue) {
     var sortie = "";
     FirebaseFirestore.instance
         .collection(album)
@@ -121,7 +181,7 @@ class Access_Music_database_collection {
     return sortie ?? "";
   }
 
-  String musique_url(String titre_connue) {
+  String get_musique_url(String titre_connue) {
     var sortie = "";
     FirebaseFirestore.instance
         .collection(album)
@@ -140,7 +200,7 @@ class Access_Music_database_collection {
     return sortie ?? "";
   }
 
-  int musique_rating(String titre_connue) {
+  int get_musique_rating(String titre_connue) {
     var sortie = 0;
     FirebaseFirestore.instance
         .collection(album)
@@ -160,7 +220,7 @@ class Access_Music_database_collection {
     return sortie;
   }
 
-  String musique_artist(String titre_connue) {
+  String get_musique_artist(String titre_connue) {
     var sortie = "";
     FirebaseFirestore.instance
         .collection(album)
@@ -191,21 +251,34 @@ class LoadAllCollection {
 
   LoadAllCollection() {
     CollectionReference album = FirebaseFirestore.instance.collection(collect);
-
+    //print("22222");
     try {
       // Get data from docs and convert map to List
-      album.get().then((QuerySnapshot querySnapshot) {
+      FirebaseFirestore.instance
+          .collection(collect)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
         final docu = querySnapshot.docs.map((doc) => doc.data()).toList();
+        print(docu);
         this.album_list = docu
-            .map(
-                (element) => (element as dynamic)['album'].toString() ?? "vide")
+            .map((element) => (element as dynamic)['album'].toString())
             .toList();
         //docu.forEach((element) => this.titles.add(element['title'].toString()));
+
+        //print((docu[0] as dynamic)['album']);
+        print(album_list);
       });
+
+      //print("thsi work e");
+      //
     } catch (e) {
-      this.album_list = [];
+      //this.album_list = [];
+      print("rr error");
     }
+
+    /*print(allData);
+      print("1111111111");*/
   }
 
-  get albums => album_list;
+  get get_album => album_list;
 }
